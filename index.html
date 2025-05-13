@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Blue Login</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2, #80deea);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .login-container:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h1 {
+            color: #00acc1;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #757575;
+            font-size: 14px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: none;
+            border-bottom: 2px solid #b0bec5;
+            background: transparent;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .input-group input:focus {
+            border-bottom-color: #00acc1;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -20px;
+            left: 30px;
+            font-size: 12px;
+            color: #00acc1;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 15px;
+            left: 50px;
+            color: #757575;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #00acc1;
+            font-size: 20px;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+            accent-color: #00acc1;
+        }
+
+        .forgot-password a {
+            color: #00acc1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #00acc1, #00838f);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 172, 193, 0.3);
+        }
+
+        .login-button:hover {
+            background: linear-gradient(to right, #00838f, #006064);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 172, 193, 0.4);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #00acc1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 24px;
+            }
+            
+            .input-group input {
+                padding: 12px 15px 12px 45px;
+            }
+            
+            .input-group i {
+                font-size: 18px;
+                left: 12px;
+            }
+        }
+
+        /* Animation for input fields */
+        @keyframes inputHighlighter {
+            from { background: #00acc1; }
+            to   { width: 0; background: transparent; }
+        }
+
+        .input-group::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00acc1;
+            bottom: 0;
+            left: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus ~ ::after {
+            width: calc(100% - 50px);
+            left: 50px;
+            animation: inputHighlighter 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Welcome Back</h1>
+            <p>Please login to your account</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-button">Login</button>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if(username.trim() === '') {
+                alert('Please enter your username');
+                return;
+            }
+            
+            if(password.trim() === '') {
+                alert('Please enter your password');
+                return;
+            }
+            
+            // Here you would typically send the data to a server
+            console.log('Login attempted with:', {username, password});
+            
+            // For demo purposes, show a success message
+            alert('Login successful! (This is a demo)');
+            
+            // Reset the form
+            this.reset();
+            
+            // You could redirect to another page here
+            // window.location.href = 'dashboard.html';
+        });
+
+        // Add animation class to input fields when focused
+        document.querySelectorAll('.input-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('active');
+            });
+            
+            input.addEventListener('blur', function() {
+                if(this.value === '') {
+                    this.parentElement.classList.remove('active');
+                }
+            });
+            
+            // Check if inputs have values on page load (for browser autofill)
+            if(input.value !== '') {
+                input.parentElement.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
